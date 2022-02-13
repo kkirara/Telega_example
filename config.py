@@ -28,13 +28,11 @@ limit_user = 100
 
 class ConfigInfo():
     def __init__(self) -> None:
-        # Считываем учетные данные
         self.config = configparser.ConfigParser()
         self.config.read(CONFIG_NAME)
         if not self.config.sections():
             self.config.read_string(CONFIG_DEFAULT)
             self.save_config()
-        # Присваиваем значения внутренним переменным
         self.telegram = ConfigTelegram(self.config)
         self.telegramMessages = ConfigTelegramMessages(self.config)
         self.telegramUsers = ConfigTelegramUsers(self.config)
@@ -62,15 +60,15 @@ class ConfigTelegram():
 
 class ConfigTelegramMessages():
     def __init__(self, config):
-        self.offset_msg        = config.getint(TELEGRAM_MESSAGES,'offset_msg')# номер записи, с которой начинается считывание
-        self.limit_msg         = config.getint(TELEGRAM_MESSAGES,'limit_msg')  # максимальное число записей, передаваемых за один раз
-        self.total_count_limit = config.getint(TELEGRAM_MESSAGES,'total_count_limit')# поменяйте это значение, если вам нужны не все сообщения
+        self.offset_msg        = config.getint(TELEGRAM_MESSAGES,'offset_msg')
+        self.limit_msg         = config.getint(TELEGRAM_MESSAGES,'limit_msg')
+        self.total_count_limit = config.getint(TELEGRAM_MESSAGES,'total_count_limit')
 
 
 class ConfigTelegramUsers():
     def __init__(self, config):
-        self.offset_user = config.getint(TELEGRAM_USERS,'offset_user')# номер участника, с которого начинается считывание
-        self.limit_user  = config.getint(TELEGRAM_USERS,'limit_user')# максимальное число записей, передаваемых за один раз
+        self.offset_user = config.getint(TELEGRAM_USERS,'offset_user')
+        self.limit_user  = config.getint(TELEGRAM_USERS,'limit_user')
  
 
 if  __name__ == "__main__":
