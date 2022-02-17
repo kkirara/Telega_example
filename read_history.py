@@ -67,7 +67,7 @@ async def dump_all_messages(channel):
             messages = await client.get_messages(
                 entity=channel,
                 offset_id=offset_msg,
-                offset_date=None, add_offset=0, #offset_date=date(2021, 7, 6)
+                offset_date=None, add_offset=0,
                 limit=limit_msg, max_id=0, min_id=0,
                 reverse = True)
         except:
